@@ -23,7 +23,7 @@ export default function Home() {
       name: '👑 Admin',
       description: 'Full control over products, stores, and reports',
       color: 'bg-purple-500',
-      href: '/admin/login'
+      href: '/admin/login.js'
     }
   ]
 
