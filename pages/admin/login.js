@@ -12,25 +12,38 @@ export default function AdminLogin() {
     setLoading(true)
     setError('')
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    // First, sign in
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
       email,
       password
     })
 
-    if (error) {
-      setError(error.message)
+    if (signInError) {
+      setError(signInError.message)
       setLoading(false)
       return
     }
 
+    if (!data.user) {
+      setError('Login failed')
+      setLoading(false)
+      return
+    }
+
+    console.log('Logged in user:', data.user.id)
+
     // Check if user has admin role
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
       .from('user_profiles')
       .select('role')
       .eq('id', data.user.id)
       .single()
 
+    console.log('Profile data:', profile)
+    console.log('Profile error:', profileError)
+
     if (profile?.role === 'admin') {
+      // Redirect to dashboard
       window.location.href = '/admin/dashboard'
     } else {
       setError('Access denied. Admin privileges required.')
