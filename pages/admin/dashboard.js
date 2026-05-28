@@ -17,18 +17,25 @@ export default function AdminDashboard() {
   const checkAdmin = async () => {
     const { data: { user } } = await supabase.auth.getUser()
     
+    console.log('Current user:', user)
+    
     if (!user) {
+      console.log('No user found, redirecting to login')
       window.location.href = '/admin/login'
       return
     }
 
-    const { data: profile } = await supabase
+    const { data: profile, error } = await supabase
       .from('user_profiles')
       .select('role, full_name')
       .eq('id', user.id)
       .single()
 
+    console.log('User profile:', profile)
+    console.log('Profile error:', error)
+
     if (profile?.role !== 'admin') {
+      console.log('Not admin, signing out')
       await supabase.auth.signOut()
       window.location.href = '/admin/login'
       return
