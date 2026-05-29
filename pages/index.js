@@ -10,210 +10,488 @@ export default function Home() {
   const roles = [
     {
       id: 'customer',
-      name: 'Customer',
-      icon: '👟',
-      description: 'Browse shoes, shop, and track orders',
-      features: ['Browse shoes by size, color & price', 'Add to cart & wishlist', 'Place orders & track status', 'View order history'],
-      color: 'blue',
-      gradient: 'from-blue-500 to-cyan-500',
-      bgHover: 'hover:border-blue-400',
+      name: 'Customer Portal',
+      icon: '🛍️',
+      description: 'Shop premium sneakers and track your orders effortlessly.',
+      features: [
+        'Browse latest sneaker drops',
+        'Add to cart & wishlist',
+        'Track orders in real-time',
+        'Secure checkout experience'
+      ],
+      gradient: 'from-orange-500 to-red-500',
       href: '/customer/login'
     },
     {
       id: 'attendant',
-      name: 'Shop Attendant',
+      name: 'Store Staff',
       icon: '🏪',
-      description: 'Manage orders and update inventory',
-      features: ['Process incoming orders', 'Update stock levels', 'Mark orders as dispatched', 'View sales summary'],
-      color: 'green',
-      gradient: 'from-emerald-500 to-teal-500',
-      bgHover: 'hover:border-emerald-400',
+      description: 'Manage customer orders and store inventory seamlessly.',
+      features: [
+        'Update stock instantly',
+        'Process customer orders',
+        'Dispatch deliveries',
+        'Monitor sales performance'
+      ],
+      gradient: 'from-lime-400 to-green-500',
       href: '/attendant/login'
     },
     {
       id: 'admin',
-      name: 'Administrator',
+      name: 'Admin Control',
       icon: '👑',
-      description: 'Full control over products, stores, and reports',
-      features: ['Add/edit/remove products', 'Manage attendants & stores', 'View sales reports', 'Track overall inventory'],
-      color: 'purple',
-      gradient: 'from-violet-500 to-purple-600',
-      bgHover: 'hover:border-purple-400',
+      description: 'Complete control over products, stores, and analytics.',
+      features: [
+        'Manage all products',
+        'Control users & stores',
+        'Track business reports',
+        'Monitor inventory levels'
+      ],
+      gradient: 'from-yellow-400 to-orange-500',
       href: '/admin/login'
     }
+  ]
+
+  const featuredShoes = [
+    {
+      name: 'Air Max Pulse',
+      price: '$120',
+      image:
+        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop'
+    },
+    {
+      name: 'Jordan Retro',
+      price: '$180',
+      image:
+        'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1200&auto=format&fit=crop'
+    },
+    {
+      name: 'Street Runner X',
+      price: '$145',
+      image:
+        'https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=1200&auto=format&fit=crop'
+    }
+  ]
+
+  const categories = [
+    { title: 'Men', icon: '👞' },
+    { title: 'Women', icon: '👠' },
+    { title: 'Sneakers', icon: '👟' },
+    { title: 'Sports', icon: '⚽' }
   ]
 
   if (!mounted) return null
 
   return (
-    <div className="relative min-h-screen bg-gray-950">
-      {/* Professional Background Image with Overlay */}
-      <div 
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Background */}
+      <div
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")',
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=80&w=1920&auto=format&fit=crop")',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950/90 via-gray-900/80 to-gray-950/90 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-black/80"></div>
       </div>
 
-      {/* App Container */}
-      <div className="relative z-10 min-h-screen">
-        {/* Top Navigation - App Style */}
-        <nav className="bg-black/50 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+      <div className="relative z-10">
+        {/* NAVBAR */}
+        <nav className="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="flex justify-between items-center h-20">
+              {/* Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center shadow-2xl">
                   <span className="text-2xl">👟</span>
                 </div>
+
                 <div>
-                  <span className="text-white font-bold text-2xl tracking-tight">soul<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">hub</span></span>
-                  <span className="hidden md:inline text-xs text-gray-400 ml-2">v2.0</span>
+                  <h1 className="text-3xl font-black tracking-tight">
+                    SOUL<span className="text-orange-500">HUB</span>
+                  </h1>
+                  <p className="text-xs text-gray-400 uppercase tracking-[0.3em]">
+                    Premium Footwear
+                  </p>
                 </div>
               </div>
-              <div className="hidden md:flex items-center space-x-8">
-                <a href="#" className="text-gray-300 hover:text-white text-sm font-medium transition">Dashboard</a>
-                <a href="#" className="text-gray-300 hover:text-white text-sm font-medium transition">Analytics</a>
-                <a href="#" className="text-gray-300 hover:text-white text-sm font-medium transition">Support</a>
-                <button className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium transition">Contact Sales</button>
+
+              {/* Menu */}
+              <div className="hidden md:flex items-center gap-8">
+                <a href="#" className="hover:text-orange-400 transition font-medium">
+                  New Arrivals
+                </a>
+
+                <a href="#" className="hover:text-orange-400 transition font-medium">
+                  Men
+                </a>
+
+                <a href="#" className="hover:text-orange-400 transition font-medium">
+                  Women
+                </a>
+
+                <a href="#" className="hover:text-orange-400 transition font-medium">
+                  Sneakers
+                </a>
+
+                <a href="#" className="hover:text-orange-400 transition font-medium">
+                  Sale
+                </a>
               </div>
-              <button className="md:hidden text-white p-2 rounded-lg bg-white/10">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+
+              {/* Actions */}
+              <div className="flex items-center gap-3">
+                <button className="hidden md:flex bg-white/10 hover:bg-white/20 transition px-4 py-2 rounded-full">
+                  ❤️ Wishlist
+                </button>
+
+                <button className="bg-orange-500 hover:bg-orange-600 transition px-5 py-2 rounded-full font-semibold text-black">
+                  🛒 Cart
+                </button>
+              </div>
             </div>
           </div>
         </nav>
 
-        {/* Hero Section - Clean & Professional */}
-        <main className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 border border-white/20">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              <span className="text-xs font-medium text-white">Enterprise Platform</span>
+        {/* HERO */}
+        <section className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-32">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left */}
+            <div>
+              <div className="inline-flex items-center bg-orange-500 text-black px-5 py-2 rounded-full text-sm font-black uppercase tracking-widest mb-8">
+                NEW DROP 2026
+              </div>
+
+              <h1 className="text-6xl lg:text-8xl font-black leading-none tracking-tight mb-8">
+                FIND YOUR
+                <span className="block text-orange-500">
+                  PERFECT STEP
+                </span>
+              </h1>
+
+              <p className="text-xl text-gray-300 leading-relaxed max-w-xl mb-10">
+                Premium sneakers, streetwear classics, and performance footwear
+                crafted for every lifestyle.
+              </p>
+
+              <div className="flex flex-wrap gap-5">
+                <button className="bg-orange-500 hover:bg-orange-600 text-black px-8 py-4 rounded-full font-bold text-lg transition hover:scale-105">
+                  Shop Collection
+                </button>
+
+                <button className="border border-white/20 hover:bg-white/10 px-8 py-4 rounded-full font-semibold transition">
+                  Explore Sneakers
+                </button>
+              </div>
+
+              {/* Brands */}
+              <div className="mt-16">
+                <p className="text-gray-500 uppercase text-sm tracking-[0.3em] mb-5">
+                  Trusted Brands
+                </p>
+
+                <div className="flex flex-wrap gap-8 text-2xl font-black text-gray-400">
+                  <span>Nike</span>
+                  <span>Adidas</span>
+                  <span>Puma</span>
+                  <span>Jordan</span>
+                  <span>NB</span>
+                </div>
+              </div>
             </div>
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-              Step Into the Future of
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Footwear Management</span>
-            </h1>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              SoulHub combines powerful inventory tools, seamless shopping, and real-time analytics in one elegant platform. Trusted by leading shoe retailers worldwide.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-lg hover:shadow-xl">
-                Request Demo
-              </button>
-              <button className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold transition">
-                Watch Tour
-              </button>
+
+            {/* Right */}
+            <div className="relative flex justify-center">
+              <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+                alt="Featured Sneaker"
+                className="w-full max-w-2xl rotate-[-18deg] drop-shadow-[0_35px_35px_rgba(0,0,0,0.8)] hover:rotate-[-12deg] transition duration-700"
+              />
+
+              {/* Floating Card */}
+              <div className="absolute bottom-10 left-0 bg-zinc-900 border border-white/10 rounded-3xl p-5 shadow-2xl">
+                <p className="text-sm text-gray-400 mb-1">
+                  Best Seller
+                </p>
+
+                <h3 className="font-bold text-xl">
+                  Air Max Pulse
+                </h3>
+
+                <p className="text-orange-400 font-bold mt-2">
+                  $120
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Stats Cards - App Dashboard Style */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
-            {[
-              { label: 'Active Stores', value: '156', trend: '+12%', icon: '🏬', color: 'blue' },
-              { label: 'Monthly Orders', value: '12.4K', trend: '+8%', icon: '📦', color: 'green' },
-              { label: 'Inventory Items', value: '48.2K', trend: '+3%', icon: '👟', color: 'purple' },
-              { label: 'Revenue (MTD)', value: '$284K', trend: '+22%', icon: '💰', color: 'pink' }
-            ].map((stat, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition">
-                <div className="flex justify-between items-start mb-3">
-                  <span className="text-3xl">{stat.icon}</span>
-                  <span className="text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">{stat.trend}</span>
+        {/* CATEGORIES */}
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-24">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((cat, i) => (
+              <div
+                key={i}
+                className="bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-3xl p-8 transition hover:-translate-y-2 cursor-pointer group"
+              >
+                <div className="text-5xl mb-5 group-hover:scale-110 transition">
+                  {cat.icon}
                 </div>
-                <div className="text-3xl font-bold text-white">{stat.value}</div>
-                <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
+
+                <h3 className="text-2xl font-bold">
+                  {cat.title}
+                </h3>
+
+                <p className="text-gray-400 mt-2">
+                  Explore Collection
+                </p>
               </div>
             ))}
           </div>
+        </section>
 
-          {/* Role Selection Cards - Core Feature */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white">Choose Your Portal</h2>
-              <p className="text-gray-400 mt-2">Secure access tailored to your role</p>
+        {/* FEATURED SHOES */}
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-28">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <p className="text-orange-500 uppercase tracking-[0.3em] text-sm font-bold mb-3">
+                Trending Now
+              </p>
+
+              <h2 className="text-5xl font-black">
+                Featured Sneakers
+              </h2>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {roles.map((role) => (
-                <div
-                  key={role.id}
-                  className="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer overflow-hidden"
-                  onClick={() => window.location.href = role.href}
-                >
-                  <div className="p-6">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${role.gradient} flex items-center justify-center text-2xl mb-5 shadow-lg group-hover:scale-110 transition`}>
-                      {role.icon}
+
+            <button className="hidden md:block border border-white/20 hover:bg-white/10 px-6 py-3 rounded-full transition">
+              View All
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {featuredShoes.map((shoe, i) => (
+              <div
+                key={i}
+                className="bg-zinc-900 rounded-[2rem] overflow-hidden border border-white/10 hover:-translate-y-3 transition duration-500 group"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={shoe.image}
+                    alt={shoe.name}
+                    className="h-80 w-full object-cover group-hover:scale-110 transition duration-700"
+                  />
+                </div>
+
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold">
+                        {shoe.name}
+                      </h3>
+
+                      <p className="text-orange-400 font-bold text-lg">
+                        {shoe.price}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{role.name}</h3>
-                    <p className="text-gray-400 text-sm mb-4">{role.description}</p>
-                    <div className="space-y-2 mb-6">
-                      {role.features.slice(0, 3).map((feat, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm text-gray-300">
-                          <span className="text-green-400">✓</span>
-                          <span>{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <button className={`w-full py-2.5 rounded-lg font-medium text-white bg-gradient-to-r ${role.gradient} opacity-90 hover:opacity-100 transition`}>
-                      Access Portal →
+
+                    <button className="w-12 h-12 rounded-full bg-orange-500 hover:bg-orange-600 transition flex items-center justify-center text-black text-xl">
+                      +
                     </button>
                   </div>
+
+                  <button className="w-full bg-white text-black py-3 rounded-full font-bold hover:bg-gray-200 transition">
+                    Shop Now
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ROLE PORTALS */}
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-28">
+          <div className="text-center mb-14">
+            <p className="text-orange-500 uppercase tracking-[0.3em] text-sm font-bold mb-3">
+              Platform Access
+            </p>
+
+            <h2 className="text-5xl font-black">
+              Access Your Portal
+            </h2>
           </div>
 
-          {/* Feature Grid - Detailed & Professional */}
-          <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-8 mb-16">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl font-bold text-white">Everything you need to scale</h2>
-              <p className="text-gray-400 mt-2">Powerful features built for modern shoe retailers</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {roles.map((role) => (
+              <div
+                key={role.id}
+                onClick={() => (window.location.href = role.href)}
+                className="bg-zinc-900 border border-white/10 rounded-[2rem] p-8 hover:-translate-y-2 transition duration-500 cursor-pointer group"
+              >
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${role.gradient} flex items-center justify-center text-3xl mb-6 shadow-xl group-hover:scale-110 transition`}
+                >
+                  {role.icon}
+                </div>
+
+                <h3 className="text-3xl font-black mb-3">
+                  {role.name}
+                </h3>
+
+                <p className="text-gray-400 mb-6">
+                  {role.description}
+                </p>
+
+                <div className="space-y-3 mb-8">
+                  {role.features.map((feat, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 text-gray-300"
+                    >
+                      <span className="text-orange-500">✓</span>
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  className={`w-full py-4 rounded-full bg-gradient-to-r ${role.gradient} font-bold text-black hover:scale-[1.02] transition`}
+                >
+                  Access Portal →
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* WHY CHOOSE US */}
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-28">
+          <div className="bg-zinc-900 border border-white/10 rounded-[3rem] p-10 lg:p-16">
+            <div className="text-center mb-16">
+              <p className="text-orange-500 uppercase tracking-[0.3em] text-sm font-bold mb-3">
+                Why SoulHub
+              </p>
+
+              <h2 className="text-5xl font-black mb-4">
+                Built For Sneaker Lovers
+              </h2>
+
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Everything you need to shop, manage inventory, and grow your footwear business.
+              </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: 'Multi-store Inventory', desc: 'Sync stock across all locations in real-time', icon: '🏪' },
-                { title: 'Smart Analytics', desc: 'Sales trends, customer insights, and forecasts', icon: '📊' },
-                { title: 'Role-based Access', desc: 'Customer, attendant, admin – each with tailored views', icon: '🔐' },
-                { title: 'Order Fulfillment', desc: 'Automated tracking and status updates', icon: '🚚' },
-                { title: 'Wishlist & Cart', desc: 'Seamless shopping experience', icon: '❤️' },
-                { title: 'API First', desc: 'Integrate with your existing tools', icon: '⚙️' }
+                {
+                  title: 'Premium Collections',
+                  desc: 'Curated footwear from top global brands.',
+                  icon: '🔥'
+                },
+                {
+                  title: 'Fast Delivery',
+                  desc: 'Quick and secure shipping nationwide.',
+                  icon: '🚚'
+                },
+                {
+                  title: 'Real-Time Inventory',
+                  desc: 'Live stock updates across all stores.',
+                  icon: '📦'
+                },
+                {
+                  title: 'Secure Payments',
+                  desc: 'Protected and trusted checkout process.',
+                  icon: '🔒'
+                },
+                {
+                  title: 'Easy Order Tracking',
+                  desc: 'Track purchases from checkout to delivery.',
+                  icon: '📍'
+                },
+                {
+                  title: 'Modern Store Management',
+                  desc: 'Powerful admin tools for your team.',
+                  icon: '⚡'
+                }
               ].map((feat, i) => (
-                <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-white/10 transition">
-                  <div className="text-3xl">{feat.icon}</div>
-                  <div>
-                    <h3 className="text-white font-semibold">{feat.title}</h3>
-                    <p className="text-gray-400 text-sm">{feat.desc}</p>
+                <div
+                  key={i}
+                  className="bg-black rounded-3xl p-8 border border-white/5 hover:border-orange-500/40 transition"
+                >
+                  <div className="text-5xl mb-6">
+                    {feat.icon}
                   </div>
+
+                  <h3 className="text-2xl font-bold mb-3">
+                    {feat.title}
+                  </h3>
+
+                  <p className="text-gray-400 leading-relaxed">
+                    {feat.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* CTA - Final Push */}
-          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-3xl p-10 text-center border border-white/20">
-            <h2 className="text-3xl font-bold text-white mb-3">Ready to transform your shoe business?</h2>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">Join hundreds of retailers using SoulHub to manage orders, inventory, and growth.</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-white text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition">Get Started Free</button>
-              <button className="bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition">Contact Sales</button>
+        {/* CTA */}
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-28">
+          <div className="relative overflow-hidden rounded-[3rem] bg-orange-500 p-14 text-center">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_40%)]"></div>
+
+            <div className="relative z-10">
+              <p className="uppercase tracking-[0.3em] text-sm font-black text-black/70 mb-5">
+                START YOUR JOURNEY
+              </p>
+
+              <h2 className="text-5xl lg:text-6xl font-black text-black mb-6">
+                Step Into Style
+              </h2>
+
+              <p className="text-black/80 text-lg max-w-2xl mx-auto mb-10">
+                Discover premium footwear collections and elevate your streetwear game today.
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-5">
+                <button className="bg-black text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition">
+                  Shop Now
+                </button>
+
+                <button className="border border-black/20 px-8 py-4 rounded-full font-bold hover:bg-black/10 transition">
+                  Explore Collection
+                </button>
+              </div>
             </div>
           </div>
-        </main>
+        </section>
 
-        {/* Footer */}
-        <footer className="border-t border-white/10 mt-16 py-8 text-center text-gray-500 text-sm">
-          <div className="max-w-7xl mx-auto px-6">
-            <p>© 2025 SoulHub, Inc. All rights reserved. Designed for modern footwear enterprises.</p>
-            <div className="flex justify-center gap-6 mt-3">
-              <a href="#" className="hover:text-white transition">Privacy</a>
-              <a href="#" className="hover:text-white transition">Terms</a>
-              <a href="#" className="hover:text-white transition">Security</a>
+        {/* FOOTER */}
+        <footer className="border-t border-white/10 py-10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-5">
+            <div>
+              <h2 className="text-3xl font-black">
+                SOUL<span className="text-orange-500">HUB</span>
+              </h2>
+
+              <p className="text-gray-500 mt-2">
+                Premium footwear & modern retail solutions.
+              </p>
+            </div>
+
+            <div className="flex gap-6 text-gray-400">
+              <a href="#" className="hover:text-white transition">
+                Privacy
+              </a>
+
+              <a href="#" className="hover:text-white transition">
+                Terms
+              </a>
+
+              <a href="#" className="hover:text-white transition">
+                Support
+              </a>
             </div>
           </div>
         </footer>
