@@ -14,8 +14,9 @@ export default function Home() {
       icon: '👟',
       description: 'Browse shoes, shop, and track orders',
       features: ['Browse shoes by size, color & price', 'Add to cart & wishlist', 'Place orders & track status', 'View order history'],
-      color: 'from-sky-500 to-blue-600',
-      bgHover: 'hover:border-sky-400',
+      color: 'blue',
+      gradient: 'from-blue-500 to-cyan-500',
+      bgHover: 'hover:border-blue-400',
       href: '/customer/login'
     },
     {
@@ -24,7 +25,8 @@ export default function Home() {
       icon: '🏪',
       description: 'Manage orders and update inventory',
       features: ['Process incoming orders', 'Update stock levels', 'Mark orders as dispatched', 'View sales summary'],
-      color: 'from-emerald-500 to-teal-600',
+      color: 'green',
+      gradient: 'from-emerald-500 to-teal-500',
       bgHover: 'hover:border-emerald-400',
       href: '/attendant/login'
     },
@@ -34,8 +36,9 @@ export default function Home() {
       icon: '👑',
       description: 'Full control over products, stores, and reports',
       features: ['Add/edit/remove products', 'Manage attendants & stores', 'View sales reports', 'Track overall inventory'],
-      color: 'from-violet-500 to-purple-600',
-      bgHover: 'hover:border-violet-400',
+      color: 'purple',
+      gradient: 'from-violet-500 to-purple-600',
+      bgHover: 'hover:border-purple-400',
       href: '/admin/login'
     }
   ]
@@ -43,289 +46,178 @@ export default function Home() {
   if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-r from-sky-600/20 to-blue-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-violet-600/20 to-purple-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
-        
-        {/* Floating shoe icons background */}
-        <div className="absolute top-1/4 left-1/4 text-7xl opacity-5 animate-float">👟</div>
-        <div className="absolute bottom-1/4 right-1/4 text-8xl opacity-5 animate-float-delayed">👞</div>
-        <div className="absolute top-1/2 right-1/3 text-6xl opacity-5 animate-float-slow">👠</div>
+    <div className="relative min-h-screen bg-gray-950">
+      {/* Professional Background Image with Overlay */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950/90 via-gray-900/80 to-gray-950/90 backdrop-blur-sm"></div>
       </div>
 
-      {/* Navigation Bar */}
-      <nav className="relative z-10 bg-black/40 backdrop-blur-xl border-b border-white/10 sticky top-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3 group cursor-pointer">
-              <div className="relative">
-                <span className="text-3xl filter drop-shadow-glow transition-transform group-hover:scale-110 inline-block">👟</span>
-                <span className="absolute -top-1 -right-2 text-xs animate-ping-slow">✨</span>
+      {/* App Container */}
+      <div className="relative z-10 min-h-screen">
+        {/* Top Navigation - App Style */}
+        <nav className="bg-black/50 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-2xl">👟</span>
+                </div>
+                <div>
+                  <span className="text-white font-bold text-2xl tracking-tight">soul<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">hub</span></span>
+                  <span className="hidden md:inline text-xs text-gray-400 ml-2">v2.0</span>
+                </div>
               </div>
-              <div>
-                <span className="text-white font-black text-2xl tracking-tight">
-                  soul<span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">hub</span>
-                </span>
-                <span className="text-[10px] text-gray-400 block -mt-1">step into expression</span>
+              <div className="hidden md:flex items-center space-x-8">
+                <a href="#" className="text-gray-300 hover:text-white text-sm font-medium transition">Dashboard</a>
+                <a href="#" className="text-gray-300 hover:text-white text-sm font-medium transition">Analytics</a>
+                <a href="#" className="text-gray-300 hover:text-white text-sm font-medium transition">Support</a>
+                <button className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium transition">Contact Sales</button>
               </div>
+              <button className="md:hidden text-white p-2 rounded-lg bg-white/10">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
             </div>
-            <div className="hidden md:flex space-x-6">
-              {['Home', 'Collection', 'Stores', 'Community', 'Contact'].map((item) => (
-                <a key={item} href="#" className="text-gray-300 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-                  {item}
-                </a>
-              ))}
-            </div>
-            <button className="md:hidden text-white p-2 rounded-lg bg-white/10">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {/* Hero Section */}
-      <div className="relative z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-8 animate-in slide-in-from-top-5 fade-in duration-700">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-white text-sm font-medium">Live Inventory System • 24/7 Access</span>
+        {/* Hero Section - Clean & Professional */}
+        <main className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 border border-white/20">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+              <span className="text-xs font-medium text-white">Enterprise Platform</span>
+            </div>
+            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              Step Into the Future of
+              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Footwear Management</span>
+            </h1>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              SoulHub combines powerful inventory tools, seamless shopping, and real-time analytics in one elegant platform. Trusted by leading shoe retailers worldwide.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-lg hover:shadow-xl">
+                Request Demo
+              </button>
+              <button className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold transition">
+                Watch Tour
+              </button>
+            </div>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight animate-in slide-in-from-bottom-5 fade-in duration-700">
-            Find Your
-            <span className="bg-gradient-to-r from-sky-400 via-violet-400 to-pink-400 bg-clip-text text-transparent relative">
-              {" "}Perfect Stride
-              <svg className="absolute -bottom-3 left-0 w-full h-2" viewBox="0 0 200 8" preserveAspectRatio="none">
-                <path d="M0 4 Q25 8 50 4 T100 4 T150 4 T200 4" stroke="url(#gradient)" fill="none" strokeWidth="2"/>
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#38bdf8"/>
-                    <stop offset="100%" stopColor="#f472b6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
-          </h1>
-          
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-12 animate-in slide-in-from-bottom-5 fade-in delay-200 duration-700">
-            SoulHub brings together premium footwear, seamless management, and authentic style.
-            Choose your portal and step into a smarter way to shop or sell.
-          </p>
-          
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-20 animate-in slide-in-from-bottom-5 fade-in delay-300 duration-700">
+
+          {/* Stats Cards - App Dashboard Style */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
             {[
-              { value: "800+", label: "Shoe Styles", icon: "👟" },
-              { value: "60+", label: "Premium Brands", icon: "🏷️" },
-              { value: "25k+", label: "Happy Customers", icon: "😊" },
-              { value: "Same Day", label: "Shipping", icon: "🚚" }
-            ].map((stat, idx) => (
-              <div key={idx} className="text-center group">
-                <div className="text-4xl mb-2 opacity-70 group-hover:opacity-100 transition-all group-hover:scale-110">
-                  {stat.icon}
+              { label: 'Active Stores', value: '156', trend: '+12%', icon: '🏬', color: 'blue' },
+              { label: 'Monthly Orders', value: '12.4K', trend: '+8%', icon: '📦', color: 'green' },
+              { label: 'Inventory Items', value: '48.2K', trend: '+3%', icon: '👟', color: 'purple' },
+              { label: 'Revenue (MTD)', value: '$284K', trend: '+22%', icon: '💰', color: 'pink' }
+            ].map((stat, i) => (
+              <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition">
+                <div className="flex justify-between items-start mb-3">
+                  <span className="text-3xl">{stat.icon}</span>
+                  <span className="text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">{stat.trend}</span>
                 </div>
-                <div className="text-4xl font-black text-white bg-gradient-to-br from-white to-gray-300 bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
+                <div className="text-3xl font-bold text-white">{stat.value}</div>
                 <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Role Selection Cards */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Choose Your <span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">Portal</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Tailored experiences for every role in the soulhub ecosystem
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8 perspective-1000">
-          {roles.map((role, idx) => (
-            <div
-              key={role.id}
-              className={`group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-7 transition-all duration-500 cursor-pointer border border-white/10 ${role.bgHover} hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:shadow-${role.color.split(' ')[1]}/20 animate-in fade-in slide-in-from-bottom-5 duration-700`}
-              style={{ animationDelay: `${idx * 100}ms` }}
-              onClick={() => window.location.href = role.href}
-            >
-              {/* Glow effect on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${role.color} rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`}></div>
-              
-              {/* Icon with animated background */}
-              <div className={`relative w-20 h-20 bg-gradient-to-r ${role.color} rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-lg group-hover:rotate-6 group-hover:scale-110 transition-all duration-500`}>
-                {role.icon}
-                <div className="absolute inset-0 rounded-2xl bg-white/20 animate-pulse-slow"></div>
-              </div>
-              
-              <h3 className="text-2xl font-black text-white mb-2">
-                {role.name}
-              </h3>
-              
-              <p className="text-gray-300 mb-5 text-sm leading-relaxed">
-                {role.description}
-              </p>
-              
-              {/* Features list */}
-              <div className="space-y-2.5 mb-7">
-                {role.features.map((feature, fIdx) => (
-                  <div key={fIdx} className="flex items-center gap-2.5 text-gray-300 text-sm group/feature">
-                    <div className={`w-5 h-5 rounded-full bg-gradient-to-r ${role.color} flex items-center justify-center text-white text-xs font-bold`}>
-                      ✓
+          {/* Role Selection Cards - Core Feature */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-white">Choose Your Portal</h2>
+              <p className="text-gray-400 mt-2">Secure access tailored to your role</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {roles.map((role) => (
+                <div
+                  key={role.id}
+                  className="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer overflow-hidden"
+                  onClick={() => window.location.href = role.href}
+                >
+                  <div className="p-6">
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${role.gradient} flex items-center justify-center text-2xl mb-5 shadow-lg group-hover:scale-110 transition`}>
+                      {role.icon}
                     </div>
-                    <span className="group-hover/feature:text-white transition-colors">{feature}</span>
+                    <h3 className="text-xl font-bold text-white mb-2">{role.name}</h3>
+                    <p className="text-gray-400 text-sm mb-4">{role.description}</p>
+                    <div className="space-y-2 mb-6">
+                      {role.features.slice(0, 3).map((feat, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm text-gray-300">
+                          <span className="text-green-400">✓</span>
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <button className={`w-full py-2.5 rounded-lg font-medium text-white bg-gradient-to-r ${role.gradient} opacity-90 hover:opacity-100 transition`}>
+                      Access Portal →
+                    </button>
                   </div>
-                ))}
-              </div>
-              
-              <button className={`w-full bg-gradient-to-r ${role.color} text-white py-3.5 rounded-xl font-bold transition-all duration-300 shadow-lg group-hover:shadow-xl hover:scale-[1.02] active:scale-95`}>
-                Access {role.name} Portal
-                <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="relative z-10 bg-gradient-to-b from-black/40 via-black/20 to-transparent py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              Powered for <span className="bg-gradient-to-r from-sky-400 to-emerald-400 bg-clip-text text-transparent">Performance</span>
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Everything you need to manage, sell, and discover footwear like never before
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: "🎯", title: "Smart Discovery", desc: "AI-powered size & style matching", color: "from-sky-500 to-blue-500" },
-              { icon: "🛍️", title: "Seamless Checkout", desc: "One-click orders with live tracking", color: "from-emerald-500 to-teal-500" },
-              { icon: "📈", title: "Live Analytics", desc: "Real-time sales & inventory insights", color: "from-violet-500 to-purple-500" },
-              { icon: "🛡️", title: "Bank-Grade Security", desc: "Role-based encrypted access", color: "from-rose-500 to-pink-500" }
-            ].map((feature, idx) => (
-              <div key={idx} className="group text-center p-7 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-5">
-                <div className={`w-16 h-16 mx-auto bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center text-3xl mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {feature.icon}
                 </div>
-                <h3 className="text-white font-black text-lg mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="relative z-10 py-20">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="relative bg-gradient-to-r from-sky-600/20 via-violet-600/20 to-purple-600/20 rounded-3xl p-10 backdrop-blur-xl border border-white/20 overflow-hidden">
-            {/* Animated background elements */}
-            <div className="absolute top-0 right-0 text-9xl opacity-5 animate-float">👟</div>
-            <div className="absolute bottom-0 left-0 text-8xl opacity-5 animate-float-delayed">👞</div>
-            
-            <div className="relative text-center">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-                Ready to <span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">Elevate</span> Your Experience?
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                Join thousands of souls who've found their perfect stride with SoulHub
-              </p>
-              <div className="flex flex-wrap gap-5 justify-center">
-                <button 
-                  onClick={() => window.location.href = '/customer/login'}
-                  className="group bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-                >
-                  Start Shopping
-                  <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-                </button>
-                <button 
-                  onClick={() => window.location.href = '/admin/login'}
-                  className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 active:scale-95"
-                >
-                  Admin Dashboard
-                  <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">⚡</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="relative z-10 text-center py-12 border-t border-white/10 bg-black/20 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">👟</span>
-              <span className="text-white font-black text-xl">soul<span className="bg-gradient-to-r from-sky-400 to-violet-400 bg-clip-text text-transparent">hub</span></span>
-            </div>
-            <div className="flex gap-8">
-              {['About', 'Careers', 'Press', 'Sustainability'].map((item) => (
-                <a key={item} href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  {item}
-                </a>
-              ))}
-            </div>
-            <div className="flex gap-4">
-              {['𝕏', '📘', '📸', '🎵'].map((social, idx) => (
-                <a key={idx} href="#" className="text-gray-400 hover:text-white text-xl transition-all hover:scale-110">
-                  {social}
-                </a>
               ))}
             </div>
           </div>
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap justify-center gap-6 text-xs text-gray-500">
-            <a href="#" className="hover:text-gray-300">Privacy Policy</a>
-            <a href="#" className="hover:text-gray-300">Terms of Service</a>
-            <a href="#" className="hover:text-gray-300">Cookie Policy</a>
-            <span>© 2024 SoulHub. All rights reserved.</span>
-          </div>
-        </div>
-      </footer>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(15px) rotate(-3deg); }
-        }
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(4deg); }
-        }
-        .animate-float {
-          animation: float 8s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float-delayed 10s ease-in-out infinite;
-        }
-        .animate-float-slow {
-          animation: float-slow 12s ease-in-out infinite;
-        }
-        .animate-ping-slow {
-          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-      `}</style>
+          {/* Feature Grid - Detailed & Professional */}
+          <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-8 mb-16">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl font-bold text-white">Everything you need to scale</h2>
+              <p className="text-gray-400 mt-2">Powerful features built for modern shoe retailers</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: 'Multi-store Inventory', desc: 'Sync stock across all locations in real-time', icon: '🏪' },
+                { title: 'Smart Analytics', desc: 'Sales trends, customer insights, and forecasts', icon: '📊' },
+                { title: 'Role-based Access', desc: 'Customer, attendant, admin – each with tailored views', icon: '🔐' },
+                { title: 'Order Fulfillment', desc: 'Automated tracking and status updates', icon: '🚚' },
+                { title: 'Wishlist & Cart', desc: 'Seamless shopping experience', icon: '❤️' },
+                { title: 'API First', desc: 'Integrate with your existing tools', icon: '⚙️' }
+              ].map((feat, i) => (
+                <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-white/10 transition">
+                  <div className="text-3xl">{feat.icon}</div>
+                  <div>
+                    <h3 className="text-white font-semibold">{feat.title}</h3>
+                    <p className="text-gray-400 text-sm">{feat.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA - Final Push */}
+          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-3xl p-10 text-center border border-white/20">
+            <h2 className="text-3xl font-bold text-white mb-3">Ready to transform your shoe business?</h2>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">Join hundreds of retailers using SoulHub to manage orders, inventory, and growth.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button className="bg-white text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition">Get Started Free</button>
+              <button className="bg-white/10 backdrop-blur border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition">Contact Sales</button>
+            </div>
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="border-t border-white/10 mt-16 py-8 text-center text-gray-500 text-sm">
+          <div className="max-w-7xl mx-auto px-6">
+            <p>© 2025 SoulHub, Inc. All rights reserved. Designed for modern footwear enterprises.</p>
+            <div className="flex justify-center gap-6 mt-3">
+              <a href="#" className="hover:text-white transition">Privacy</a>
+              <a href="#" className="hover:text-white transition">Terms</a>
+              <a href="#" className="hover:text-white transition">Security</a>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   )
 }
