@@ -20,8 +20,9 @@ export default function AdminDashboard() {
   }, [])
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth < 768)
-    if (window.innerWidth >= 768) {
+    const mobile = window.innerWidth < 768
+    setIsMobile(mobile)
+    if (!mobile) {
       setSidebarOpen(false)
     }
   }
@@ -66,8 +67,8 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white text-lg">Loading dashboard...</p>
+          <div className="w-12 h-12 border-3 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <p className="text-gray-400">Loading dashboard...</p>
         </div>
       </div>
     )
@@ -76,14 +77,16 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 bg-gray-800/95 backdrop-blur-md z-50 px-4 py-3 flex justify-between items-center border-b border-gray-700">
+      <div className="md:hidden fixed top-0 left-0 right-0 bg-gray-900/95 backdrop-blur-md z-50 px-4 py-3 flex justify-between items-center border-b border-gray-800">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">👑</span>
-          <span className="text-white font-bold">ShoeStore Admin</span>
+          <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <span className="text-white text-sm">👑</span>
+          </div>
+          <span className="text-white font-semibold">ShoeStore</span>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="text-white text-2xl"
+          className="text-white text-2xl w-8 h-8 flex items-center justify-center rounded-lg bg-gray-800"
         >
           {sidebarOpen ? '✕' : '☰'}
         </button>
@@ -92,49 +95,34 @@ export default function AdminDashboard() {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/50 z-40"
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div className={`
-        fixed top-0 left-0 h-full bg-gray-800/95 backdrop-blur-md border-r border-gray-700 z-50
-        transition-all duration-300 transform
+        fixed top-0 left-0 h-full bg-gray-900 border-r border-gray-800 z-50
+        transition-all duration-300 ease-in-out transform
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         md:translate-x-0
-        w-72 md:w-64
+        w-64
       `}>
-        {/* Desktop Logo */}
-        <div className="hidden md:block p-6 border-b border-gray-700">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-3xl">👑</span>
-            <h1 className="text-2xl font-bold text-white">ShoeStore</h1>
-          </div>
-          <p className="text-gray-400 text-sm">Admin Panel</p>
-        </div>
-
-        {/* Mobile Logo */}
-        <div className="md:hidden p-6 border-b border-gray-700">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-2xl">👑</span>
-                <h1 className="text-xl font-bold text-white">ShoeStore</h1>
-              </div>
-              <p className="text-gray-400 text-xs">Admin Panel</p>
+        {/* Logo Section */}
+        <div className="p-5 border-b border-gray-800">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <span className="text-white text-xl">👑</span>
             </div>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-gray-400 text-xl"
-            >
-              ✕
-            </button>
+            <div>
+              <h1 className="text-lg font-bold text-white">ShoeStore</h1>
+              <p className="text-gray-500 text-xs">Admin Panel</p>
+            </div>
           </div>
         </div>
         
         {/* Navigation */}
-        <nav className="mt-6 px-3">
+        <nav className="mt-4 px-3">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -143,44 +131,44 @@ export default function AdminDashboard() {
                 setSidebarOpen(false)
               }}
               className={`
-                w-full text-left px-4 py-3 rounded-xl transition-all duration-200 mb-1
+                w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 mb-1
                 flex items-center gap-3
                 ${activeTab === tab.id
-                  ? `bg-gradient-to-r from-${tab.color}-600 to-${tab.color}-700 text-white shadow-lg`
-                  : 'text-gray-300 hover:bg-gray-700'
+                  ? `bg-gradient-to-r from-${tab.color}-600/20 to-${tab.color}-700/20 text-${tab.color}-400 border-r-2 border-${tab.color}-500`
+                  : 'text-gray-400 hover:text-white hover:bg-gray-800'
                 }
               `}
             >
-              <span className="text-xl">{tab.icon}</span>
-              <span className="font-medium">{tab.name}</span>
+              <span className="text-lg">{tab.icon}</span>
+              <span className="text-sm font-medium">{tab.name}</span>
               {activeTab === tab.id && (
                 <span className="ml-auto text-xs">✓</span>
               )}
             </button>
           ))}
           
-          <div className="border-t border-gray-700 my-4"></div>
+          <div className="border-t border-gray-800 my-3"></div>
           
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-all duration-200 flex items-center gap-3"
+            className="w-full text-left px-3 py-2.5 rounded-lg text-red-400 hover:bg-red-500/10 transition-all duration-200 flex items-center gap-3"
           >
-            <span className="text-xl">🚪</span>
-            <span className="font-medium">Logout</span>
+            <span className="text-lg">🚪</span>
+            <span className="text-sm font-medium">Logout</span>
           </button>
         </nav>
 
         {/* User Info Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-800 bg-gray-900/95">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-              <span className="text-white font-bold">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+              <span className="text-white text-sm font-bold">
                 {adminName.charAt(0).toUpperCase()}
               </span>
             </div>
-            <div>
-              <p className="text-white text-sm font-medium">{adminName}</p>
-              <p className="text-gray-400 text-xs">Administrator</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-medium truncate">{adminName}</p>
+              <p className="text-gray-500 text-xs">Administrator</p>
             </div>
           </div>
         </div>
@@ -189,30 +177,30 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <div className="md:ml-64 min-h-screen">
         {/* Desktop Header */}
-        <div className="hidden md:block bg-gray-800/50 backdrop-blur-sm border-b border-gray-700 px-8 py-4">
+        <div className="hidden md:block bg-gray-900/50 backdrop-blur-sm border-b border-gray-800 px-6 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-xl font-bold text-white">
                 {tabs.find(t => t.id === activeTab)?.name}
               </h2>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-gray-500 text-sm mt-0.5">
                 Welcome back, {adminName}
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 bg-gray-700/50 rounded-full px-4 py-2">
-                <span className="text-purple-400">👑</span>
-                <span className="text-white text-sm">Admin</span>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 bg-gray-800 rounded-full px-3 py-1.5">
+                <span className="text-purple-400 text-sm">👑</span>
+                <span className="text-gray-300 text-xs">Admin Access</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Mobile Header Spacer */}
-        <div className="h-16 md:hidden"></div>
+        <div className="h-14 md:hidden"></div>
 
-        {/* Content */}
-        <div className="p-4 md:p-8">
+        {/* Content Area - Optimized padding */}
+        <div className="p-3 md:p-5 lg:p-6">
           {activeTab === 'products' && <ProductsPanel />}
           {activeTab === 'orders' && <OrdersPanel />}
           {activeTab === 'users' && <UsersPanel />}
